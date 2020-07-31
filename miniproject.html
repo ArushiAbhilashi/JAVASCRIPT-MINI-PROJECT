@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STOPWATCH USING JAVASCRIPT</title>
+    <script>
+        var time_ms = 0;
+        var status = 0;
+
+        function start_stop()
+        {
+        if (status == 0)
+        {
+        status = 1;
+        then = new Date();
+        then.setTime(then.getTime() - time_ms);
+        }
+        else
+        {
+        status = 0;
+        now = new Date();
+        time_ms = now.getTime() - then.getTime();
+        document.form1.time.value = time_ms;
+        }
+        }
+
+        function clockreset()
+        {
+        status = 0;
+        time_ms = 0;
+        document.form1.time.value = time_ms;
+        }
+
+        function display()
+        {
+        setTimeout("display();", 10);
+        if (status == 1)
+        {
+        now = new Date();
+        time_ms = now.getTime() - then.getTime();
+        document.form1.time.value = time_ms;
+        }
+        }
+        </script>
+       
+    <STYle>
+        body{
+            background-color: lavender;
+            padding: 10%;
+
+        }
+        .show{
+            background-color:palevioletred;
+            color:black;
+            padding: 5px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 30px;
+        }
+        
+        .button{
+            background-color: #ec1717;
+            border: none;
+            color: white;
+            margin-left:125px;
+            padding: 10px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+        }
+
+    </STYle>
+    <h2>STOPWATCH USING JAVASCRIPT</h2>
+</head>
+<body onload="display()">
+    
+    <form name="form1">
+        <font size="40px">Time: </font>
+        <input type="text" Name="time" class="show"><br/><br/>
+        <input class="button" type="button" name="ssbutton" value="Start / Stop" onClick="start_stop()" class="show">
+        <input class="button" type="button" name="reset" value="Reset" onClick="clockreset()">
+        </form>
+</body>
+</html>
